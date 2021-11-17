@@ -150,6 +150,7 @@ MODELS = [logistic_regression, random_forest, svm, gradient_boosting, multilayer
     
         
 if __name__ == "__main__":
+    """
     for data_dict in DATA:
         
         X_train, X_test, y_train, y_test = train_test_split(data_dict["X"], data_dict["y"], test_size=0.3, random_state=42)
@@ -166,7 +167,8 @@ if __name__ == "__main__":
             print(f'Training model {model_label} on data {data_dict["label"]} \n')
             train_and_eval(model_label, classifier, params, X_train, y_train, X_test, y_test, data_dict["label"])
             
-            
+    """
+    
     for data_dict in DATA:
         
         X_train, X_test, y_train, y_test = train_test_split(data_dict["X"], data_dict["y"], test_size=0.3, random_state=42)
