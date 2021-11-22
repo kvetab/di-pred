@@ -1,3 +1,3 @@
 # Developability Index Prediction Project
 
-Description hoes here
+Description goes here
