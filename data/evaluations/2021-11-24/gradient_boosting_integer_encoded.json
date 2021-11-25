@@ -1,0 +1,1 @@
+{"model_type": "gradient_boosting", "data": "integer_encoded", "params": {"key": "[0.1 0.2 0.3 0.4 0.5]"}, "metrics": {"f1": 0.30303030303030304, "acc": 0.8083333333333333, "mcc": 0.3006335458732897, "auc": 0.5855155482815056, "precision": 0.7142857142857143, "recall": 0.19230769230769232}, "preprocessing": "none"}

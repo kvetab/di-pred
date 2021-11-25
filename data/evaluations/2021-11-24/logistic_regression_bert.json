@@ -1,0 +1,1 @@
+{"model_type": "logistic_regression", "data": "bert", "params": {"key": "['lbfgs', 'sag']"}, "metrics": {"f1": 0.53125, "acc": 0.75, "mcc": 0.3812118695553192, "auc": 0.7152209492635025, "precision": 0.4473684210526316, "recall": 0.6538461538461539}, "preprocessing": "none"}

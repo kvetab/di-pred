@@ -1,0 +1,1 @@
+{"model_type": "multilayer_perceptron", "data": "integer_encoded", "params": {"key": "['relu', 'logistic']"}, "metrics": {"f1": 0.4827586206896552, "acc": 0.75, "mcc": 0.32324284925164637, "auc": 0.6734860883797054, "precision": 0.4375, "recall": 0.5384615384615384}, "preprocessing": "none"}

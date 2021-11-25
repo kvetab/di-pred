@@ -1,0 +1,1 @@
+{"model_type": "logistic_regression", "data": "integer_encoded", "params": {"key": "['lbfgs', 'sag']"}, "metrics": {"f1": 0.5074626865671641, "acc": 0.725, "mcc": 0.34618072417297263, "auc": 0.6992635024549918, "precision": 0.4146341463414634, "recall": 0.6538461538461539}, "preprocessing": "none"}
