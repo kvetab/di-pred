@@ -1,0 +1,1 @@
+{"model_type": "multilayer_perceptron", "data": "pybiomed", "params": {}, "metrics": {"f1": 0.35915492957746475, "acc": 0.24481327800829875, "mcc": 0.01000502983400777, "auc": 0.5103896103896104, "precision": 0.9622641509433962, "recall": 0.22077922077922077}, "preprocessing": "StandardScaler"}

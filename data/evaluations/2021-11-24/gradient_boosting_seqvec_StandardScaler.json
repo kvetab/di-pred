@@ -1,0 +1,1 @@
+{"model_type": "gradient_boosting", "data": "seqvec", "params": {"key": "[0.1 0.2 0.3 0.4 0.5]"}, "metrics": {"f1": 0.16901408450704225, "acc": 0.7531380753138075, "mcc": 0.05339910156767412, "auc": 0.5191192266380236, "precision": 0.2727272727272727, "recall": 0.12244897959183673}, "preprocessing": "StandardScaler"}

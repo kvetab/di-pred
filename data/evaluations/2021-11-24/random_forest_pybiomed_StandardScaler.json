@@ -1,0 +1,1 @@
+{"model_type": "random_forest", "data": "pybiomed", "params": {}, "metrics": {"f1": 0.20155038759689922, "acc": 0.14522821576763487, "mcc": 0.007937856421427447, "auc": 0.5062770562770563, "precision": 0.9629629629629629, "recall": 0.11255411255411256}, "preprocessing": "StandardScaler"}

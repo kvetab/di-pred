@@ -1,0 +1,1 @@
+{"model_type": "SVM", "data": "bert", "params": {"key": "<scipy.stats._distn_infrastructure.rv_frozen object at 0x7fbf87d653d0>"}, "metrics": {"f1": 0.22222222222222224, "acc": 0.6778242677824268, "mcc": 0.019083687059118202, "auc": 0.5096133190118153, "precision": 0.22, "recall": 0.22448979591836735}, "preprocessing": "StandardScaler"}

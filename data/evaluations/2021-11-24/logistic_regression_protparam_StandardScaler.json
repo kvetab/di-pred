@@ -1,0 +1,1 @@
+{"model_type": "logistic_regression", "data": "protparam", "params": {"key": "['lbfgs', 'sag']"}, "metrics": {"f1": 0.21582733812949642, "acc": 0.5439330543933054, "mcc": -0.07383541481488283, "auc": 0.4556928034371644, "precision": 0.16666666666666666, "recall": 0.30612244897959184}, "preprocessing": "StandardScaler"}

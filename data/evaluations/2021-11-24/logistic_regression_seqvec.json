@@ -1,0 +1,1 @@
+{"model_type": "logistic_regression", "data": "seqvec", "params": {"key": "['lbfgs', 'sag']"}, "metrics": {"f1": 0.42372881355932207, "acc": 0.7154811715481172, "mcc": 0.2482253462690407, "auc": 0.6393125671321159, "precision": 0.36231884057971014, "recall": 0.5102040816326531}, "preprocessing": "none"}

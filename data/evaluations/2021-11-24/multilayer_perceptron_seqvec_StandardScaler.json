@@ -1,0 +1,1 @@
+{"model_type": "multilayer_perceptron", "data": "seqvec", "params": {"key": "['relu', 'logistic']"}, "metrics": {"f1": 0.2916666666666667, "acc": 0.7154811715481172, "mcc": 0.1137915268000298, "auc": 0.5560150375939849, "precision": 0.2978723404255319, "recall": 0.2857142857142857}, "preprocessing": "StandardScaler"}
