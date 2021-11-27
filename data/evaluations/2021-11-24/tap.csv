@@ -28,3 +28,8 @@ random_forest	seqvec	_StandardScaler	0.9788135593220338	0.0	0.9585062240663901	0
 gradient_boosting	seqvec	_StandardScaler	0.5325077399380804	-0.0934744043419481	0.37344398340248963	0.9347826086956522	0.3722943722943723	0.38614718614718613	../../data/evaluations/2021-11-24/models/gradient_boosting_seqvec_StandardScaler.pkl
 SVM	seqvec	_StandardScaler	0.0	0.0	0.04149377593360996	0.0	0.0	0.5	../../data/evaluations/2021-11-24/models/SVM_seqvec_StandardScaler.pkl
 multilayer_perceptron	seqvec	_StandardScaler	0.21455938697318006	-0.047595242403315086	0.14937759336099585	0.9333333333333333	0.12121212121212122	0.46060606060606063	../../data/evaluations/2021-11-24/models/multilayer_perceptron_seqvec_StandardScaler.pkl
+logistic_regression	seqvec		0.0	0.0	0.04149377593360996	0.0	0.0	0.5	../../data/evaluations/2021-11-24/models/logistic_regression_seqvec.pkl
+random_forest	seqvec		0.0	0.0	0.04149377593360996	0.0	0.0	0.5	../../data/evaluations/2021-11-24/models/random_forest_seqvec.pkl
+gradient_boosting	seqvec		0.5757575757575758	0.004562528481354459	0.4190871369294606	0.9595959595959596	0.41125541125541126	0.5056277056277056	../../data/evaluations/2021-11-24/models/gradient_boosting_seqvec.pkl
+SVM	seqvec		0.0	0.0	0.04149377593360996	0.0	0.0	0.5	../../data/evaluations/2021-11-24/models/SVM_seqvec.pkl
+multilayer_perceptron	seqvec		0.0	0.0	0.04149377593360996	0.0	0.0	0.5	../../data/evaluations/2021-11-24/models/multilayer_perceptron_seqvec.pkl
