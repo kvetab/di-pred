@@ -1,0 +1,1 @@
+{"model_type": "kNN", "data": "pybiomed", "params": {"n_neighbors": "[1, 3, 5]"}, "best_params": {"n_neighbors": "1"}, "metrics": {"f1": 0.35514018691588783, "acc": 0.5632911392405063, "mcc": 0.09335659139421494, "auc": 0.5559814169570266, "precision": 0.2638888888888889, "recall": 0.5428571428571428}, "preprocessing": "smote_os"}
