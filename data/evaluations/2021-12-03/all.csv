@@ -1,3 +1,4 @@
+model_name	data	preprocessing	F1	MCC	Acc	Precision	Recall	AUC	filename
 logistic_regression	integer_encoded	none	0.40310077519379844	0.21080214098455255	0.6778242677824268	0.325	0.5306122448979592	0.6232008592910849	../../data/evaluations/2021-12-03/logistic_regression_integer_encoded.json
 random_forest	integer_encoded	none	0.3815789473684211	0.1649749446889334	0.606694560669456	0.2815533980582524	0.5918367346938775	0.6011815252416757	../../data/evaluations/2021-12-03/random_forest_integer_encoded.json
 gradient_boosting	integer_encoded	none	0.14285714285714285	0.02542701348578424	0.7489539748953975	0.23809523809523808	0.10204081632653061	0.5089151450053705	../../data/evaluations/2021-12-03/gradient_boosting_integer_encoded.json
