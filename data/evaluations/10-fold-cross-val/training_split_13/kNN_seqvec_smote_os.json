@@ -1,0 +1,1 @@
+{"model_type": "kNN", "data": "seqvec", "params": {"n_neighbors": "[1, 3, 5]"}, "best_params": {"n_neighbors": "1"}, "metrics": {"f1": 0.43750000000000006, "acc": 0.5670103092783505, "mcc": 0.20430347877894198, "auc": 0.6203838037457134, "precision": 0.3141025641025641, "recall": 0.7205882352941176}, "preprocessing": "smote_os"}

@@ -1,0 +1,1 @@
+{"model_type": "kNN", "data": "protparam", "params": {"n_neighbors": "[1, 3, 5]"}, "best_params": {"n_neighbors": "5"}, "metrics": {"f1": 0.34579439252336447, "acc": 0.5189003436426117, "mcc": 0.04682681762896935, "auc": 0.5276642046953309, "precision": 0.2534246575342466, "recall": 0.5441176470588235}, "preprocessing": "undersampling"}
