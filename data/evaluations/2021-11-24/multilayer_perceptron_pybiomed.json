@@ -1,1 +1,0 @@
-{"model_type": "multilayer_perceptron", "data": "pybiomed", "params": {"key": "['relu', 'logistic']"}, "metrics": {"f1": 0.0, "acc": 0.7949790794979079, "mcc": 0.0, "auc": 0.5, "precision": 0.0, "recall": 0.0}, "preprocessing": "none"}

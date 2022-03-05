@@ -1,1 +1,0 @@
-{"model_type": "random_forest", "data": "protparam", "params": {"key": "[0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65 0.7 ]"}, "metrics": {"f1": 0.22222222222222224, "acc": 0.6192468619246861, "mcc": -0.021624952693064955, "auc": 0.48791621911922667, "precision": 0.19117647058823528, "recall": 0.2653061224489796}, "preprocessing": "StandardScaler"}

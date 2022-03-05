@@ -1,1 +1,0 @@
-{"model_type": "SVM", "data": "seqvec", "params": {"key": "<scipy.stats._distn_infrastructure.rv_frozen object at 0x7fbf84f21410>"}, "metrics": {"f1": 0.3366336633663366, "acc": 0.7196652719665272, "mcc": 0.15922648841273856, "auc": 0.5813641245972072, "precision": 0.3269230769230769, "recall": 0.3469387755102041}, "preprocessing": "StandardScaler"}

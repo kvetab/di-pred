@@ -1,1 +1,0 @@
-{"model_type": "gradient_boosting", "data": "protparam", "params": {"key": "[0.1 0.2 0.3 0.4 0.5]"}, "metrics": {"f1": 0.03225806451612903, "acc": 0.7489539748953975, "mcc": -0.07609959331480781, "auc": 0.47862513426423203, "precision": 0.07692307692307693, "recall": 0.02040816326530612}, "preprocessing": "none"}

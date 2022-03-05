@@ -1,1 +1,0 @@
-{"model_type": "logistic_regression", "data": "pybiomed", "params": {"key": "['lbfgs', 'sag']"}, "metrics": {"f1": 0.4390243902439024, "acc": 0.7112970711297071, "mcc": 0.26515091858848594, "auc": 0.6518259935553169, "precision": 0.36486486486486486, "recall": 0.5510204081632653}, "preprocessing": "none"}

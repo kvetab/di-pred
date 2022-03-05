@@ -1,1 +1,0 @@
-{"model_type": "logistic_regression", "data": "pybiomed", "params": {}, "metrics": {"f1": 0.32857142857142857, "acc": 0.21991701244813278, "mcc": -0.04998057828763458, "auc": 0.4495670995670995, "precision": 0.9387755102040817, "recall": 0.19913419913419914}, "preprocessing": "StandardScaler"}
