@@ -183,8 +183,8 @@ def test_on_tap(model_name, x_test, y_test,
         csvwriter.writerow(line)
 
 
-def test_all(x_test, y_test, data_name, outpath, preprocessing):
-    for model in ["logistic_regression", "random_forest", "gradient_boosting", "SVM", "multilayer_perceptron"]:
+def test_all(x_test, y_test, data_name, outpath, preprocessing, models):
+    for model in models:
         print(f"Testing model {model} on {data_name} with preprocessing {preprocessing}...")
         test_on_tap(model, x_test, y_test, data_name, outpath, preprocessing=preprocessing)
 
@@ -335,6 +335,11 @@ CLI.add_argument(
     type=int,  
     default=[0,1,2,3,4],
 )
+CLI.add_argument(
+    "--filter",
+    type=int,
+    default=0
+)
 
 # parse the command line
 args = CLI.parse_args()
@@ -358,16 +363,23 @@ def crossval_round(train_df, test_df, eval_dir):
                 x_test_tr.drop(["Ab_ID", "Y"], axis=1), x_test_tr["Y"], 
                 x_train_tr["cluster_merged"], data_name, eval_dir, prepro_name, model_creators)
             
-            #test_all(tap_tr, tap_data["Y"], data_name, eval_dir, prepro_name)
+            #test_all(tap_tr, tap_data["Y"], data_name, eval_dir, prepro_name, model_creators)
 
 
 
+chen_filtered = pd.read_csv(path.join(DATA_DIR, f"chen/deduplicated/filtered_chen_data.csv"), index_col=0)
 chen_train = pd.read_csv(path.join(DATA_DIR, f"chen/deduplicated/crossval/chen_train_{seed}.csv"), index_col=0)
 #chen_train = chen_train[:50]
 chen_train = merge_clusters(chen_train, clusters)
+if args.filter > 0:
+    chen_train = chen_train.merge(chen_filtered[["Antibody_ID"]], on="Antibody_ID")
 
 chen_test = pd.read_csv(path.join(DATA_DIR, f"chen/deduplicated/crossval/chen_test_{seed}.csv"), index_col=0)
+if args.filter > 0:
+    chen_test = chen_test.merge(chen_filtered[["Antibody_ID"]], on="Antibody_ID")
 eval_dir = f"training_split_{seed}"
+if args.filter > 0:
+    eval_dir += "_filt"
 #try:
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}"))
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}/models"))
