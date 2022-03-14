@@ -14,7 +14,7 @@ mkdir $SCRATCHDIR/
 mkdir $SCRATCHDIR/models
 mkdir $SCRATCHDIR/source
 
-MODEL_NAME=02_pretrained_2000epochs
+MODEL_NAME=03_pretrained_2000epochs
 MODEL_DIR=$SCRATCHDIR/models/heavy/$MODEL_NAME
 mkdir -p $MODEL_DIR
 
@@ -37,7 +37,7 @@ fairseq-train \
     --task sentence_prediction \
     --num-classes 2 \
     --optimizer adam \
-    --lr 1e-5 --lr-scheduler inverse_sqrt --warmup-updates 10000 \
+    --lr 1e-4 --lr-scheduler inverse_sqrt --warmup-updates 10000 \
     --dropout 0.1 --attention-dropout 0.1 \
     --max-positions 144 \
     --shorten-method truncate \
