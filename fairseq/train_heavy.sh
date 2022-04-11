@@ -51,8 +51,8 @@ fairseq-train \
 
 
 
-mkdir $DATADIR/$MODEL_NAME
-cp -r $MODEL_DIR $DATADIR/$MODEL_NAME
+mkdir $DATADIR/models/heavy/$MODEL_NAME
+cp -r $MODEL_DIR $DATADIR/models/heavy/$MODEL_NAME
 
 cd ..
 rm -r $SCRATCHDIR/*
