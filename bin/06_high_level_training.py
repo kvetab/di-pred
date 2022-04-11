@@ -55,12 +55,9 @@ def logistic_regression(preprocessing, data_name, hp_dir):
 def random_forest(preprocessing, data_name, hp_dir):
     filename = path.join(hp_dir, f"random_forest_{data_name}_{preprocessing}.json")
     parameters = json.load(open(filename))
-    #n_estimators = int(parameters["n_estimators"])
-    #max_depth = int(parameters["max_depth"])
-    #max_fetures = float(parameters["max_features"])
     rf = RandomForestClassifier(
-        random_state=42, n_jobs=-1, class_weight='balanced', n_estimators=parameters["n_estimators"],
-        max_depth=parameters["max_depth"], max_features=parameters["max_features"]
+        random_state=42, n_jobs=-1, class_weight='balanced', n_estimators=int(parameters["n_estimators"]),
+        max_depth=int(parameters["max_depth"]), max_features=float(parameters["max_features"])
     )
     return rf, parameters, "random_forest"
 
@@ -86,9 +83,9 @@ def gradient_boosting(preprocessing, data_name, hp_dir):
     filename = path.join(hp_dir, f"gradient_boosting_{data_name}_{preprocessing}.json")
     parameters = json.load(open(filename))
     gb = GradientBoostingClassifier(
-        random_state=42, n_iter_no_change=70, learning_rate=parameters["learning_rate"],
-        n_estimators=parameters["n_estimators"], max_depth=parameters["max_depth"],
-        max_features=parameters["max_features"]
+        random_state=42, n_iter_no_change=70, learning_rate=float(parameters["learning_rate"]),
+        n_estimators=int(parameters["n_estimators"]), max_depth=int(parameters["max_depth"]),
+        max_features=float(parameters["max_features"])
     )
     return gb, parameters, "gradient_boosting"
 
