@@ -116,6 +116,7 @@ def seqvec(train_df, test_df, tap_df):
     return x_chen_train, x_chen_test, x_tap
 
 
+
 def sapiens(train_df, test_df, tap_df):
     x_chen = pd.read_csv(path.join(DATA_DIR, "chen/embeddings/sapiens/sapiens_chen_embeddings.csv"), index_col=0).drop("Y", axis=1)
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)

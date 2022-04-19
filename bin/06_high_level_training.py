@@ -156,6 +156,7 @@ def integer_encoded(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_tap = pd.read_csv(path.join(DATA_DIR, "tap/integer_encoding/tap_integer_encoded.csv"))
     x_tap.drop("Ab_ID", axis=1, inplace=True)
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
@@ -164,6 +165,7 @@ def pybiomed(train_df, test_df):
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_tap = pd.read_feather(path.join(DATA_DIR, "tap/pybiomed/X_TAP_data.ftr"))
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
@@ -175,6 +177,7 @@ def protparam(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     
     x_tap = pd.read_csv(path.join(DATA_DIR, "tap/protparam/protparam_features_tap.csv"))
+    x_tap = x_tap.merge(tap_df[["Antibody_ID", "Y"]], right_on="Antibody_ID", left_on="Unnamed: 0").drop("Antibody_ID", axis=1)
     x_tap = x_tap.drop("Unnamed: 0", axis=1)
     return x_chen_train, x_chen_test, x_tap
 
@@ -185,6 +188,7 @@ def bert(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_tap = pd.read_feather(path.join(DATA_DIR, "tap/embeddings/bert/bert_tap_embeddings.ftr"))
     x_tap = x_tap.drop("Ab_ID", axis=1)
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
@@ -192,8 +196,9 @@ def seqvec(train_df, test_df):
     x_chen = pd.read_feather(path.join(DATA_DIR, "chen/embeddings/seqvec/seqvec_chen_embeddings.ftr"))
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
-    x_tap = pd.read_feather(path.join(DATA_DIR, "tap/embeddings/seqvec/seqvec_tap_embeddings.ftr"))
+    x_tap = pd.read_csv(path.join(DATA_DIR, "tap/embeddings/seqvec/seqvec_tap_embeddings.csv"), index_col=0)
     x_tap = x_tap.drop("Ab_ID", axis=1)
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
@@ -203,6 +208,7 @@ def sapiens(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_tap = pd.read_csv(path.join(DATA_DIR, "tap/embeddings/sapiens/sapiens_tap_embeddings.csv"), index_col=0)
     x_tap = x_tap.drop(["Ab_ID", "Y"], axis=1)
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
@@ -212,6 +218,7 @@ def onehot(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_tap = pd.read_feather(path.join(DATA_DIR, "tap/onehot/tap_onehot_short.ftr"))
     x_tap = x_tap.drop(["Ab_ID"], axis=1)
+    x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
 
 
