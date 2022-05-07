@@ -39,7 +39,7 @@ def knn(preprocessing, data_name, hp_dir):
     filename = path.join(hp_dir, f"kNN_{data_name}_{preprocessing}.json")
     parameters = json.load(open(filename))
     #n_neighbors = int(parameters["n_neighbors"])
-    model = KNeighborsClassifier(n_neighbors=parameters["n_neighbors"]) 
+    model = KNeighborsClassifier(n_neighbors=int(parameters["n_neighbors"]))
     return model, parameters, "kNN"
 
 def logistic_regression(preprocessing, data_name, hp_dir):
@@ -48,7 +48,7 @@ def logistic_regression(preprocessing, data_name, hp_dir):
     #C = float(parameters["C"])
     lr = LogisticRegression(
         class_weight='balanced', max_iter=1000, random_state=42,
-        C=parameters["C"], penalty=parameters["penalty"], solver=parameters["solver"]
+        C=float(parameters["C"]), penalty=parameters["penalty"], solver=parameters["solver"]
     )
     return lr, parameters, "logistic_regression"
 
@@ -74,8 +74,8 @@ def svm(preprocessing, data_name, hp_dir):
     filename = path.join(hp_dir, f"SVM_{data_name}_{preprocessing}.json")
     parameters = json.load(open(filename))
     svc = SVC(
-        max_iter=8000, probability=True, class_weight='balanced', C=parameters["C"],
-        kernel=parameters["kernel"], gamma=parameters["gamma"]
+        max_iter=8000, probability=True, class_weight='balanced', C=float(parameters["C"]),
+        kernel=parameters["kernel"], gamma=float(parameters["gamma"])
     )
     return svc, parameters, "SVM"
 
@@ -150,7 +150,7 @@ def test_on_tap(model_name, x_test, y_test,
 
 # ## Loading data representations
 
-def integer_encoded(train_df, test_df):
+def integer_encoded(train_df, test_df, tap_df):
     x_chen = pd.read_csv(path.join(DATA_DIR, "chen/integer_encoding/chen_integer_encoded.csv"), index_col=0)
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
@@ -160,7 +160,7 @@ def integer_encoded(train_df, test_df):
     return x_chen_train, x_chen_test, x_tap
 
 
-def pybiomed(train_df, test_df):
+def pybiomed(train_df, test_df, tap_df):
     x_chen = pd.read_feather(path.join(DATA_DIR, "chen/pybiomed/X_data.ftr"))
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
@@ -169,7 +169,7 @@ def pybiomed(train_df, test_df):
     return x_chen_train, x_chen_test, x_tap
 
 
-def protparam(train_df, test_df):
+def protparam(train_df, test_df, tap_df):
     x_chen = pd.read_csv(path.join(DATA_DIR, "chen/protparam/protparam_features.csv"))
     x_chen.rename({"Unnamed: 0": "Ab_ID"}, axis=1, inplace=True)
     x_chen = x_chen.drop("name", axis=1)
@@ -177,12 +177,12 @@ def protparam(train_df, test_df):
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     
     x_tap = pd.read_csv(path.join(DATA_DIR, "tap/protparam/protparam_features_tap.csv"))
-    x_tap = x_tap.merge(tap_df[["Antibody_ID", "Y"]], right_on="Antibody_ID", left_on="Unnamed: 0").drop("Antibody_ID", axis=1)
-    x_tap = x_tap.drop("Unnamed: 0", axis=1)
+    x_tap = x_tap.merge(tap_df[["Antibody_ID", "Y"]].reset_index(), right_on="Antibody_ID", left_on="Unnamed: 0").set_index('index').drop("Antibody_ID", axis=1)
+    x_tap = x_tap.drop(["Unnamed: 0", "Y"], axis=1)
     return x_chen_train, x_chen_test, x_tap
 
 
-def bert(train_df, test_df):
+def bert(train_df, test_df, tap_df):
     x_chen = pd.read_feather(path.join(DATA_DIR, "chen/embeddings/bert/bert_chen_embeddings.ftr"))
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
@@ -192,7 +192,7 @@ def bert(train_df, test_df):
     return x_chen_train, x_chen_test, x_tap
 
 
-def seqvec(train_df, test_df):
+def seqvec(train_df, test_df, tap_df):
     x_chen = pd.read_feather(path.join(DATA_DIR, "chen/embeddings/seqvec/seqvec_chen_embeddings.ftr"))
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
@@ -202,7 +202,7 @@ def seqvec(train_df, test_df):
     return x_chen_train, x_chen_test, x_tap
 
 
-def sapiens(train_df, test_df):
+def sapiens(train_df, test_df, tap_df):
     x_chen = pd.read_csv(path.join(DATA_DIR, "chen/embeddings/sapiens/sapiens_chen_embeddings.csv"), index_col=0).drop("Y", axis=1)
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
@@ -212,11 +212,11 @@ def sapiens(train_df, test_df):
     return x_chen_train, x_chen_test, x_tap
 
 
-def onehot(train_df, test_df):
-    x_chen = pd.read_feather(path.join(DATA_DIR, "chen/onehot/chen_onehot_short.ftr"))
+def onehot(train_df, test_df, tap_df):
+    x_chen = pd.read_feather(path.join(DATA_DIR, "chen/onehot/chen_onehot.ftr"))
     x_chen_train = x_chen.merge(train_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
     x_chen_test = x_chen.merge(test_df[["Antibody_ID", "Y"]].reset_index(), left_on="Ab_ID", right_on="Antibody_ID").set_index('index').drop("Antibody_ID", axis=1)
-    x_tap = pd.read_feather(path.join(DATA_DIR, "tap/onehot/tap_onehot_short.ftr"))
+    x_tap = pd.read_feather(path.join(DATA_DIR, "tap/onehot/tap_onehot.ftr"))
     x_tap = x_tap.drop(["Ab_ID"], axis=1)
     x_tap = x_tap.loc[tap_df.index]
     return x_chen_train, x_chen_test, x_tap
@@ -314,7 +314,7 @@ seed = args.seed
 def crossval_round(train_df, test_df, eval_dir, tap_data):
     for data_rep in data_loaders:
         data_name = data_rep.__name__
-        x_train, x_test, x_tap = data_rep(train_df, test_df)
+        x_train, x_test, x_tap = data_rep(train_df, test_df, tap_data)
         for prepro in preprocessing:
             prepro_name = prepro.__name__
             x_train_tr, y_train_tr, x_test_tr, tap_tr = prepro(x_train, x_test, x_tap)
@@ -332,16 +332,17 @@ def crossval_round(train_df, test_df, eval_dir, tap_data):
 
 chen_train = pd.read_csv(path.join(DATA_DIR, f"chen/deduplicated/crossval/chen_{seed}_a.csv"), index_col=0).drop("cluster", axis=1).sort_index()
 chen_test = pd.read_csv(path.join(DATA_DIR, f"chen/deduplicated/crossval/chen_{seed}_b.csv"), index_col=0).drop("cluster", axis=1).sort_index()
-tap = pd.read_csv(path.join(DATA_DIR, "tap/TAP_data.csv"))
+tap_data = pd.read_csv(path.join(DATA_DIR, "tap/tap_not_in_chen.csv"), index_col=0)
+
 
 eval_dir = f"training_split_{seed}_a"
 
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}"))
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}/models"))
-crossval_round(chen_train, chen_test, eval_dir, tap)
+crossval_round(chen_train, chen_test, eval_dir, tap_data)
 
 eval_dir = f"training_split_{seed}_b"
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}"))
 os.mkdir(os.path.join(DATA_DIR, f"evaluations/{eval_dir}/models"))
-crossval_round(chen_test, chen_train, eval_dir, tap)
+crossval_round(chen_test, chen_train, eval_dir, tap_data)
 
