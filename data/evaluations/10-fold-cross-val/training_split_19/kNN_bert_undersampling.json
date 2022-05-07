@@ -1,1 +1,0 @@
-{"model_type": "kNN", "data": "bert", "params": {"n_neighbors": "[1, 3, 5]"}, "best_params": {"n_neighbors": "5"}, "metrics": {"f1": 0.35365853658536583, "acc": 0.576, "mcc": 0.14370452608920373, "auc": 0.591761869824966, "precision": 0.24786324786324787, "recall": 0.6170212765957447}, "preprocessing": "undersampling"}

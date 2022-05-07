@@ -1,1 +1,0 @@
-{"model_type": "kNN", "data": "integer_encoded", "params": {"n_neighbors": "[1, 3, 5]"}, "best_params": {"n_neighbors": "1"}, "metrics": {"f1": 0.4225352112676056, "acc": 0.5773195876288659, "mcc": 0.1805539392487674, "auc": 0.6066671063044051, "precision": 0.3103448275862069, "recall": 0.6617647058823529}, "preprocessing": "undersampling"}
